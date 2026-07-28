@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b78ec6109fb64949a03703eae11fe02, type: 3}
+  m_Name: MainBallCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::BallCatalog
+  balls:
+  - value: 1
+    sprite: {fileID: -147733193077689488, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.16
+    mass: 1
+    spawnChancePercent: 60
+  - value: 2
+    sprite: {fileID: 4841440940935867821, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.2
+    mass: 2
+    spawnChancePercent: 30
+  - value: 3
+    sprite: {fileID: 6004263592096263007, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.24
+    mass: 3
+    spawnChancePercent: 10
+  - value: 4
+    sprite: {fileID: -3357473553878387481, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.28
+    mass: 4
+    spawnChancePercent: 0
+  - value: 5
+    sprite: {fileID: 3189607912671282914, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.32
+    mass: 5
+    spawnChancePercent: 0
+  - value: 6
+    sprite: {fileID: 250150542965934688, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.36
+    mass: 6
+    spawnChancePercent: 0
+  - value: 7
+    sprite: {fileID: 8628672210794838983, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.4
+    mass: 7
+    spawnChancePercent: 0
+  - value: 8
+    sprite: {fileID: -270520414451640190, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.44
+    mass: 8
+    spawnChancePercent: 0
+  - value: 9
+    sprite: {fileID: -2659522213486664463, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.48
+    mass: 9
+    spawnChancePercent: 0
+  - value: 10
+    sprite: {fileID: -3644814019473795908, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.52
+    mass: 10
+    spawnChancePercent: 0
+  - value: 11
+    sprite: {fileID: -8095038524094336733, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.56
+    mass: 11
+    spawnChancePercent: 0
+  - value: 12
+    sprite: {fileID: -4989951827274038306, guid: 23fa4d93f98ff49ffb3f59044009df8d, type: 3}
+    scale: 0.6
+    mass: 12
+    spawnChancePercent: 0
