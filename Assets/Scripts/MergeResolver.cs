@@ -4,6 +4,14 @@ public sealed class MergeResolver : MonoBehaviour
 {
     [SerializeField]
     private BallSpawner ballSpawner;
+    
+    [Header("Комбо")]
+    [SerializeField]
+    private ComboManager comboManager;
+    
+    [Header("Задания")]
+    [SerializeField]
+    private QuestManager questManager;
 
     public void TryMerge(
         Ball firstBall,
@@ -92,6 +100,48 @@ public sealed class MergeResolver : MonoBehaviour
         {
             Debug.LogError(
                 "Не удалось создать результат слияния.",
+                this
+            );
+        }
+        
+        int currentCombo = 1;
+        
+        if (comboManager != null)
+        {
+            currentCombo = comboManager.RegisterMerge(
+                resultBall.transform.position
+            );
+        }
+        
+        int earnedScore =
+            resultBall.Value;
+        
+        if (SaveGame.Instance == null)
+        {
+            Debug.LogError(
+                "Не найден объект SaveGame.",
+                this
+            );
+        }
+        else
+        {
+            SaveGame.Instance.AddScore(
+                earnedScore
+            );
+        }
+        
+        if (questManager != null)
+        {
+            questManager.ReportSuccessfulMerge(
+                resultBall,
+                currentCombo,
+                earnedScore
+            );
+        }
+        else
+        {
+            Debug.LogWarning(
+                "В MergeResolver не назначен QuestManager.",
                 this
             );
         }
