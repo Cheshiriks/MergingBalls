@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Ball))]
 public sealed class DropBallController : MonoBehaviour
 {
+    private GameManager gameManager;
+    
     private Rigidbody2D ballRigidbody;
     private CircleCollider2D ballCollider;
     private Camera mainCamera;
@@ -29,6 +31,13 @@ public sealed class DropBallController : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    public void SetGameManager(
+        GameManager value
+    )
+    {
+        gameManager = value;
+    }
+    
     public bool BeginAiming(
         PlayAreaBounds bounds
     )
@@ -87,6 +96,13 @@ public sealed class DropBallController : MonoBehaviour
         if (!isAiming ||
             Pointer.current == null)
         {
+            return;
+        }
+
+        if (gameManager != null &&
+            !gameManager.CanUseGameplayInput)
+        {
+            pointerWasPressed = false;
             return;
         }
 

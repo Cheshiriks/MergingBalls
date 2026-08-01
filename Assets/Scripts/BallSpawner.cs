@@ -27,6 +27,9 @@ public sealed class BallSpawner : MonoBehaviour
     [Header("Создание следующего шара")]
     [SerializeField, Min(0f)]
     private float spawnDelay = 0.5f;
+    
+    [SerializeField]
+    private GameManager gameManager;
 
     private DropBallController currentController;
     private Coroutine spawnCoroutine;
@@ -185,6 +188,10 @@ public sealed class BallSpawner : MonoBehaviour
             return;
         }
 
+        controller.SetGameManager(
+            gameManager
+        );
+        
         if (!controller.BeginAiming(
                 playAreaBounds
             ))

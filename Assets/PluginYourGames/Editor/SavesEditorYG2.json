@@ -1,0 +1,15 @@
+{
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 4793,
+    "coins": 3100,
+    "score": 28,
+    "bestScore": 3828,
+    "isShowAds": true
+}
