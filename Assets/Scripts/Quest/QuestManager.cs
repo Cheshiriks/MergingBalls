@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public enum QuestType
 {
@@ -425,6 +426,9 @@ public sealed class QuestManager : MonoBehaviour
     
     private void ClaimCompletedQuestReward()
     {
+        // Показываем рекламу за закрытие
+        YG2.InterstitialAdvShow();
+        
         if (!IsTransitioning ||
             pendingCompletedQuest == null ||
             pendingRewardClaimed)

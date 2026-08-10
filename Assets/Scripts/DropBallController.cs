@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
@@ -19,6 +21,9 @@ public sealed class DropBallController : MonoBehaviour
     private bool isAiming;
     private bool pointerWasPressed;
     private Ball _ball;
+    
+    private static readonly List<RaycastResult>
+        UiRaycastResults = new List<RaycastResult>();
 
     public event Action<DropBallController> Dropped;
 
@@ -56,6 +61,16 @@ public sealed class DropBallController : MonoBehaviour
         {
             Debug.LogError(
                 "Не найдена камера с тегом MainCamera.",
+                this
+            );
+
+            return false;
+        }
+        
+        if (gameManager == null)
+        {
+            Debug.LogError(
+                "В DropBallController не передан GameManager.",
                 this
             );
 
@@ -99,32 +114,78 @@ public sealed class DropBallController : MonoBehaviour
             return;
         }
 
-        if (gameManager != null &&
+        /*
+         * Во время паузы забываем любое удерживание,
+         * которое могло начаться раньше.
+         */
+        if (gameManager == null ||
             !gameManager.CanUseGameplayInput)
         {
             pointerWasPressed = false;
             return;
         }
 
-        if (Pointer.current.press.wasPressedThisFrame)
+        Pointer pointer = Pointer.current;
+
+        if (pointer.press.wasPressedThisFrame)
         {
+            Vector2 screenPosition =
+                pointer.position.ReadValue();
+
+            /*
+             * Если нажатие началось над кнопкой или
+             * другим UI, шар не получает управление.
+             */
+            if (IsPointerOverUI(screenPosition))
+            {
+                pointerWasPressed = false;
+                return;
+            }
+
             pointerWasPressed = true;
         }
 
         if (pointerWasPressed &&
-            Pointer.current.press.isPressed)
+            pointer.press.isPressed)
         {
             Vector2 screenPosition =
-                Pointer.current.position.ReadValue();
+                pointer.position.ReadValue();
 
             MoveToPointer(screenPosition);
         }
 
         if (pointerWasPressed &&
-            Pointer.current.press.wasReleasedThisFrame)
+            pointer.press.wasReleasedThisFrame)
         {
             Drop();
         }
+    }
+    
+    private static bool IsPointerOverUI(
+        Vector2 screenPosition
+    )
+    {
+        if (EventSystem.current == null)
+        {
+            return false;
+        }
+
+        PointerEventData eventData =
+            new PointerEventData(
+                EventSystem.current
+            )
+            {
+                position = screenPosition
+            };
+
+        UiRaycastResults.Clear();
+
+        EventSystem.current.RaycastAll(
+            eventData,
+            UiRaycastResults
+        );
+
+        return UiRaycastResults.Count > 0;
     }
 
     private void MoveToPointer(

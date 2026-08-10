@@ -13,6 +13,8 @@ public sealed class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameOverPanel;
 
+    private float _timeScaleBeforePause = 1f;
+    
     public bool IsGameOver { get; private set; }
 
     public bool IsGameplayPaused { get; private set; }
@@ -45,17 +47,45 @@ public sealed class GameManager : MonoBehaviour
 
         SaveGame.Instance.NewGame();
     }
-
-    public void SetGameplayPaused(
-        bool isPaused
-    )
+    
+    private void OnDestroy()
     {
-        if (IsGameOver)
+        if (IsGameplayPaused)
+        {
+            Time.timeScale =
+                _timeScaleBeforePause > 0f
+                    ? _timeScaleBeforePause
+                    : 1f;
+        }
+    }
+
+    public void SetGameplayPaused(bool isPaused)
+    {
+        if (IsGameOver ||
+            IsGameplayPaused == isPaused)
         {
             return;
         }
 
-        IsGameplayPaused = isPaused;
+        if (isPaused)
+        {
+            _timeScaleBeforePause =
+                Time.timeScale > 0f
+                    ? Time.timeScale
+                    : 1f;
+
+            IsGameplayPaused = true;
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            IsGameplayPaused = false;
+
+            Time.timeScale =
+                _timeScaleBeforePause > 0f
+                    ? _timeScaleBeforePause
+                    : 1f;
+        }
     }
 
     public void LoseGame(Ball overflowBall)
@@ -65,8 +95,12 @@ public sealed class GameManager : MonoBehaviour
             return;
         }
 
+        if (IsGameplayPaused)
+        {
+            SetGameplayPaused(false);
+        }
+
         IsGameOver = true;
-        IsGameplayPaused = false;
 
         if (ballSpawner != null)
         {
