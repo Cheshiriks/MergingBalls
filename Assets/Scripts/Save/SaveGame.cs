@@ -99,4 +99,54 @@ public class SaveGame : MonoBehaviour
 
         return YG2.saves.score;
     }
+    
+    public bool IsBuyParrot
+    {
+        get { return YG2.saves.isBuyParrot; }
+        set
+        {
+            YG2.saves.isBuyParrot = value;
+            YG2.SaveProgress();
+        }
+    }
+    
+    public bool IsBuyBox
+    {
+        get { return YG2.saves.isBuyBox; }
+        set
+        {
+            YG2.saves.isBuyBox = value;
+            YG2.SaveProgress();
+        }
+    }
+    
+    public bool IsBuyMap
+    {
+        get { return YG2.saves.isBuyMap; }
+        set
+        {
+            YG2.saves.isBuyMap = value;
+            YG2.SaveProgress();
+        }
+    }
+    
+    public bool IsBuyLight
+    {
+        get { return YG2.saves.isBuyLight; }
+        set
+        {
+            YG2.saves.isBuyLight = value;
+            YG2.SaveProgress();
+        }
+    }
+    
+    public bool IsBuyFlag
+    {
+        get { return YG2.saves.isBuyFlag; }
+        set
+        {
+            YG2.saves.isBuyFlag = value;
+            YG2.SaveProgress();
+        }
+    }
 }

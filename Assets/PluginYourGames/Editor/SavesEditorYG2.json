@@ -7,9 +7,14 @@
         false,
         false
     ],
-    "idSave": 4793,
-    "coins": 3100,
-    "score": 28,
+    "idSave": 6430,
+    "coins": 60050,
+    "score": 51,
     "bestScore": 3828,
-    "isShowAds": true
+    "isShowAds": true,
+    "isBuyParrot": false,
+    "isBuyMap": false,
+    "isBuyLight": true,
+    "isBuyBox": false,
+    "isBuyFlag": true
 }
