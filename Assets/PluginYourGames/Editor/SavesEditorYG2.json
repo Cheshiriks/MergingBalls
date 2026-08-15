@@ -7,14 +7,56 @@
         false,
         false
     ],
-    "idSave": 6430,
-    "coins": 60050,
-    "score": 51,
-    "bestScore": 3828,
+    "idSave": 11869,
+    "coins": 7750,
+    "score": 508,
+    "bestScore": 3489,
     "isShowAds": true,
     "isBuyParrot": false,
     "isBuyMap": false,
-    "isBuyLight": true,
+    "isBuyLight": false,
     "isBuyBox": false,
-    "isBuyFlag": true
+    "isBuyFlag": false,
+    "gameSession": {
+        "hasSession": true,
+        "score": 508,
+        "completedQuests": 10,
+        "balls": [
+            {
+                "level": 7,
+                "positionX": 1.893160343170166,
+                "positionY": -4.03244161605835
+            },
+            {
+                "level": 5,
+                "positionX": -1.7951710224151612,
+                "positionY": -4.208678245544434
+            },
+            {
+                "level": 3,
+                "positionX": 0.7613751292228699,
+                "positionY": -2.94417667388916
+            },
+            {
+                "level": 6,
+                "positionX": -0.13869471848011018,
+                "positionY": -4.120694637298584
+            },
+            {
+                "level": 3,
+                "positionX": -2.2431342601776125,
+                "positionY": -2.890016794204712
+            },
+            {
+                "level": 2,
+                "positionX": -1.094681739807129,
+                "positionY": -3.1061666011810304
+            },
+            {
+                "level": 1,
+                "positionX": -2.417910099029541,
+                "positionY": -1.8612767457962037
+            }
+        ]
+    }
 }

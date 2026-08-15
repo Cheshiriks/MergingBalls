@@ -15,5 +15,9 @@ namespace YG
         public bool isBuyLight = false;
         public bool isBuyBox = false;
         public bool isBuyFlag = false;
+        
+        // Текущая незавершённая игровая сессия.
+        public GameSessionSave gameSession =
+            new GameSessionSave();
     }
 }

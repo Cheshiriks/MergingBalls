@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d6cba5138591d45728022986850b3e87
+guid: e104ab8e0b7fe4d24baa90c3e585ab9a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1477985784733172557
-    second: Panel_2_New (1)_0
+      213: 1459173905085120622
+    second: ParrotAds_256_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Panel_2_New (1)_0
+      name: ParrotAds_256_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 3
-        width: 1053
-        height: 380
+        x: 48
+        y: 0
+        width: 169
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3bcf6ed62c32d7be0800000000000000
-      internalID: -1477985784733172557
+      spriteID: e604e168fe6004410800000000000000
+      internalID: 1459173905085120622
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Panel_2_New (1)_0: -1477985784733172557
+      ParrotAds_256_0: 1459173905085120622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
