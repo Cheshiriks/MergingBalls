@@ -37,6 +37,7 @@ public sealed class BallSpawner : MonoBehaviour
     private bool _isFirstBall = true;
     private long _nextSpawnOrder = 1;
     private bool _isStopped = false;
+    private bool hasStarted;
 
     private void Start()
     {
@@ -47,6 +48,18 @@ public sealed class BallSpawner : MonoBehaviour
             enabled = false;
             return;
         }
+
+        //SpawnTopBall();
+    }
+    
+    public void StartSpawning()
+    {
+        if (hasStarted)
+        {
+            return;
+        }
+
+        hasStarted = true;
 
         SpawnTopBall();
     }
@@ -357,5 +370,61 @@ public sealed class BallSpawner : MonoBehaviour
             currentController.DisableControl();
             currentController = null;
         }
+    }
+    
+    public Ball SpawnRestoredBall(
+        int level,
+        Vector2 position
+    )
+    {
+        if (!CanCreateLevel(level))
+        {
+            Debug.LogError(
+                $"Невозможно восстановить шар уровня {level}.",
+                this
+            );
+
+            return null;
+        }
+
+        long spawnOrder =
+            _nextSpawnOrder++;
+
+        Ball restoredBall =
+            CreateBall(
+                level,
+                position,
+                Quaternion.identity,
+                spawnOrder
+            );
+
+        if (restoredBall == null)
+        {
+            return null;
+        }
+
+        /*
+         * Это уже шар игрового поля,
+         * а не управляемый верхний шар.
+         */
+        restoredBall.MarkReleased();
+
+        if (restoredBall.TryGetComponent(
+                out DropBallController controller
+            ))
+        {
+            controller.DisableControl();
+        }
+
+        Rigidbody2D rb =
+            restoredBall.GetComponent<Rigidbody2D>();
+
+        rb.linearVelocity =
+            Vector2.zero;
+
+        rb.angularVelocity = 0f;
+        rb.simulated = true;
+
+        return restoredBall;
     }
 }

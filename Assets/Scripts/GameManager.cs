@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public sealed class GameManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public sealed class GameManager : MonoBehaviour
     [Header("Интерфейс")]
     [SerializeField]
     private GameObject gameOverPanel;
+    
+    [SerializeField]
+    private GameSessionManager gameSessionManager;
 
     private float _timeScaleBeforePause = 1f;
     
@@ -45,7 +49,7 @@ public sealed class GameManager : MonoBehaviour
             return;
         }
 
-        SaveGame.Instance.NewGame();
+        //SaveGame.Instance.NewGame();
     }
     
     private void OnDestroy()
@@ -102,6 +106,19 @@ public sealed class GameManager : MonoBehaviour
 
         IsGameOver = true;
 
+        // Сначала завершаем и удаляем сохранение партии.
+        if (gameSessionManager != null)
+        {
+            gameSessionManager.ClearSession();
+        }
+        else
+        {
+            Debug.LogError(
+                "В GameManager не назначен GameSessionManager.",
+                this
+            );
+        }
+        
         if (ballSpawner != null)
         {
             ballSpawner.StopGame();
@@ -143,5 +160,32 @@ public sealed class GameManager : MonoBehaviour
                 ball.FreezePhysics();
             }
         }
+    }
+    
+    public void StartNewGame()
+    {
+        /*
+         * Если игра была на паузе из-за SettingsMenu, возвращаем timeScale.
+         */
+        if (IsGameplayPaused)
+        {
+            SetGameplayPaused(false);
+        }
+        
+        if (gameSessionManager != null)
+        {
+            gameSessionManager.ClearSession();
+        }
+        else
+        {
+            Debug.LogError(
+                "В GameManager не назначен GameSessionManager.",
+                this
+            );
+
+            return;
+        }
+        
+        SceneManager.LoadScene(1);
     }
 }

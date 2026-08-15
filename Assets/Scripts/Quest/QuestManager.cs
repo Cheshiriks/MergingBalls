@@ -31,24 +31,20 @@ public sealed class QuestDefinition
 
     public string GetTitle()
     {
+        String lang = SaveGame.Instance.language;
         return Type switch
         {
-            QuestType.CreateBallLevel =>
-                $"Создайте монету {Parameter}",
+            QuestType.CreateBallLevel => lang == "ru" ? $"Создайте монету {Parameter}" : $"Create a coin {Parameter}",
 
-            QuestType.ReachCombo =>
-                $"Сделайте комбо x{Parameter}",
+            QuestType.ReachCombo => lang == "ru" ? $"Сделайте комбо x{Parameter}" : $"Make a combo x{Parameter}",
 
-            QuestType.MergeCount =>
-                $"Выполните {Parameter} слияний: ",
+            QuestType.MergeCount => lang == "ru" ? $"Выполните {Parameter} слияний: " : $"Perform {Parameter} merges: ",
 
-            QuestType.EarnScore =>
-                $"Наберите {Parameter} очков",
+            QuestType.EarnScore => lang == "ru" ? $"Наберите {Parameter} очков" : $"Score {Parameter} points",
 
-            QuestType.CreateSeveralBallsOfLevel =>
-                $"Создайте три монеты {Parameter}: ",
+            QuestType.CreateSeveralBallsOfLevel => lang == "ru" ? $"Создайте три монеты {Parameter}: " : $"Create three coins {Parameter}: ",
 
-            _ => "Неизвестная цель"
+            _ => lang == "ru" ? "Неизвестная цель" : "Unknown target"
         };
     }
 }
@@ -88,6 +84,9 @@ public sealed class QuestManager : MonoBehaviour
     public event Action<QuestDefinition> QuestCompleted;
     
     public event Action<int> CompletedMissionsCountChanged;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip getCoins;
     
     [Header("Награда")]
     [SerializeField, Min(0)]
@@ -427,7 +426,10 @@ public sealed class QuestManager : MonoBehaviour
     private void ClaimCompletedQuestReward()
     {
         // Показываем рекламу за закрытие
-        YG2.InterstitialAdvShow();
+        if (SaveGame.Instance.IsShowAds)
+        {
+            YG2.InterstitialAdvShow();
+        }
         
         if (!IsTransitioning ||
             pendingCompletedQuest == null ||
@@ -456,6 +458,9 @@ public sealed class QuestManager : MonoBehaviour
                 this
             );
         }
+        
+        if (getCoins != null)
+            AudioManager.Instance.PlaySFX(getCoins);
 
         QuestDefinition completedQuest =
             pendingCompletedQuest;
@@ -633,5 +638,17 @@ public sealed class QuestManager : MonoBehaviour
             default:
                 return title;
         }
+    }
+    
+    public void RestoreCompletedMissionsCount(
+        int value
+    )
+    {
+        CompletedMissionsCount =
+            Mathf.Max(0, value);
+
+        CompletedMissionsCountChanged?.Invoke(
+            CompletedMissionsCount
+        );
     }
 }
