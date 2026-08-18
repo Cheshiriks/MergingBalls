@@ -12,6 +12,10 @@ public sealed class MergeResolver : MonoBehaviour
     [Header("Задания")]
     [SerializeField]
     private QuestManager questManager;
+    
+    [Header("Звук слияния")]
+    [SerializeField]
+    private AudioClip mergeSound;
 
     public void TryMerge(
         Ball firstBall,
@@ -110,6 +114,17 @@ public sealed class MergeResolver : MonoBehaviour
         {
             currentCombo = comboManager.RegisterMerge(
                 resultBall.transform.position
+            );
+        }
+        
+        // Звук проигрывается только один раз
+        // в начале каждой цепочки слияний.
+        if (currentCombo == 1 &&
+            AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(
+                mergeSound,
+                0.7f
             );
         }
         

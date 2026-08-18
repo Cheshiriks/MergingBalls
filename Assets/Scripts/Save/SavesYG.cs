@@ -16,6 +16,10 @@ namespace YG
         public bool isBuyBox = false;
         public bool isBuyFlag = false;
         
+        // одноразовый флаг показа обучения
+        public bool hasSeenFirstMenu = false;
+        public bool introDialogueCompleted = false;
+        
         // Текущая незавершённая игровая сессия.
         public GameSessionSave gameSession =
             new GameSessionSave();

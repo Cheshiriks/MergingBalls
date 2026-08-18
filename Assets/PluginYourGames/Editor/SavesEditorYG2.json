@@ -7,55 +7,102 @@
         false,
         false
     ],
-    "idSave": 11869,
-    "coins": 7750,
-    "score": 508,
+    "idSave": 13475,
+    "coins": 1850,
+    "score": 2191,
     "bestScore": 3489,
     "isShowAds": true,
-    "isBuyParrot": false,
+    "isBuyParrot": true,
     "isBuyMap": false,
     "isBuyLight": false,
     "isBuyBox": false,
     "isBuyFlag": false,
+    "hasSeenFirstMenu": true,
+    "introDialogueCompleted": true,
     "gameSession": {
         "hasSession": true,
-        "score": 508,
-        "completedQuests": 10,
+        "score": 2191,
+        "completedQuests": 24,
         "balls": [
             {
-                "level": 7,
-                "positionX": 1.893160343170166,
-                "positionY": -4.03244161605835
+                "level": 2,
+                "positionX": 2.3299920558929445,
+                "positionY": -4.47036075592041
             },
             {
-                "level": 5,
-                "positionX": -1.7951710224151612,
-                "positionY": -4.208678245544434
+                "level": 9,
+                "positionX": 0.36797866225242617,
+                "positionY": -3.859398126602173
             },
             {
-                "level": 3,
-                "positionX": 0.7613751292228699,
-                "positionY": -2.94417667388916
+                "level": 8,
+                "positionX": -1.8078529834747315,
+                "positionY": -3.946337938308716
             },
             {
                 "level": 6,
-                "positionX": -0.13869471848011018,
-                "positionY": -4.120694637298584
+                "positionX": 1.9828767776489258,
+                "positionY": -2.678293228149414
             },
             {
-                "level": 3,
-                "positionX": -2.2431342601776125,
-                "positionY": -2.890016794204712
+                "level": 6,
+                "positionX": -1.9806201457977296,
+                "positionY": -2.0356621742248537
             },
             {
-                "level": 2,
-                "positionX": -1.094681739807129,
-                "positionY": -3.1061666011810304
+                "level": 0,
+                "positionX": -0.8189687728881836,
+                "positionY": -2.9764509201049806
+            },
+            {
+                "level": 0,
+                "positionX": 2.505448818206787,
+                "positionY": 1.4343767166137696
+            },
+            {
+                "level": 5,
+                "positionX": -0.24504360556602479,
+                "positionY": -2.0091991424560549
             },
             {
                 "level": 1,
-                "positionX": -2.417910099029541,
-                "positionY": -1.8612767457962037
+                "positionX": 0.9638189077377319,
+                "positionY": -1.8629664182662964
+            },
+            {
+                "level": 5,
+                "positionX": 2.0635132789611818,
+                "positionY": -1.0258102416992188
+            },
+            {
+                "level": 1,
+                "positionX": -2.4178006649017336,
+                "positionY": -0.8043696880340576
+            },
+            {
+                "level": 4,
+                "positionX": 0.597602128982544,
+                "positionY": -0.7918588519096375
+            },
+            {
+                "level": 4,
+                "positionX": -1.054520606994629,
+                "positionY": -0.7692573666572571
+            },
+            {
+                "level": 3,
+                "positionX": -0.21462523937225343,
+                "positionY": 0.23147208988666535
+            },
+            {
+                "level": 3,
+                "positionX": -1.9834110736846924,
+                "positionY": 0.14907868206501008
+            },
+            {
+                "level": 4,
+                "positionX": 2.1553165912628176,
+                "positionY": 0.4513285160064697
             }
         ]
     }
