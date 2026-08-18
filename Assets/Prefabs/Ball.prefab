@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9122912404148129808}
   - component: {fileID: 1159674331230002316}
   - component: {fileID: 4080278172328278228}
+  - component: {fileID: 7861474448431110726}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -183,3 +184,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc942b11ea524d90ba45958ef7181ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
+--- !u!114 &7861474448431110726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375605528180806168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cd34873c8eb4167a9146cedcbc9f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallImpactSound
+  coinHitSound: {fileID: 8300000, guid: 3a40002d4e59d4eb2bfbde74719dc0f5, type: 3}
+  floorHitSound: {fileID: 8300000, guid: 3a40002d4e59d4eb2bfbde74719dc0f5, type: 3}
+  minimumImpactSpeed: 0.8
+  fullVolumeImpactSpeed: 6
+  minimumVolume: 0.15
+  maximumVolume: 0.8
+  soundCooldown: 0.08

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public sealed class SettingsMenuController : MonoBehaviour
 {
@@ -8,6 +9,14 @@ public sealed class SettingsMenuController : MonoBehaviour
 
     [SerializeField]
     private GameObject settingsMenu;
+    
+    [Header("First menu")]
+    [SerializeField] private GameObject firstMenu;
+    
+    // задержка перед закрытием 
+    private float _firstMenuCloseDelay = 0.5f;
+    private bool _isClosingFirstMenu;
+    private Coroutine _closeFirstMenuCoroutine;
 
     public bool IsOpen { get; private set; }
 
@@ -31,6 +40,11 @@ public sealed class SettingsMenuController : MonoBehaviour
             enabled = false;
             return;
         }
+        
+        if (firstMenu != null)
+            firstMenu.SetActive(false);
+        
+        TryShowFirstMenu();
 
         IsOpen = false;
         settingsMenu.SetActive(false);
@@ -65,5 +79,47 @@ public sealed class SettingsMenuController : MonoBehaviour
         {
             gameManager.SetGameplayPaused(false);
         }
+    }
+    
+    private void TryShowFirstMenu()
+    {
+        if (firstMenu == null)
+            return;
+
+        firstMenu.SetActive(false);
+
+        if (SaveGame.Instance == null)
+        {
+            Debug.LogWarning("SaveGame.Instance is null. FirstMenu cannot check save data.");
+            return;
+        }
+
+        bool hasSeenFirstMenu = !SaveGame.Instance.HasSeenFirstMenu();
+
+        firstMenu.SetActive(hasSeenFirstMenu);
+    }
+    
+    public void CloseFirstMenu()
+    {
+        if (_isClosingFirstMenu)
+            return;
+
+        _closeFirstMenuCoroutine = StartCoroutine(CloseFirstMenuCoroutine());
+    }
+
+    private IEnumerator CloseFirstMenuCoroutine()
+    {
+        _isClosingFirstMenu = true;
+        
+        if (SaveGame.Instance != null)
+            SaveGame.Instance.SetFirstMenuSeen();
+
+        yield return new WaitForSecondsRealtime(_firstMenuCloseDelay);
+
+        if (firstMenu != null)
+            firstMenu.SetActive(false);
+
+        _isClosingFirstMenu = false;
+        _closeFirstMenuCoroutine = null;
     }
 }

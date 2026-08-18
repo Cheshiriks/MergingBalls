@@ -26,6 +26,9 @@ public class SaveGame : MonoBehaviour
     public GameSessionSave GameSession =>
         YG2.saves.gameSession;
     
+    public bool IntroDialogueCompleted =>
+        YG2.saves.introDialogueCompleted;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -47,6 +50,27 @@ public class SaveGame : MonoBehaviour
         YG2.saves.isShowAds = false;
         YG2.SaveProgress();
         return YG2.saves.isShowAds;
+    }
+    
+    public void SetFirstMenuSeen()
+    {
+        if (YG2.saves.hasSeenFirstMenu)
+            return;
+
+        YG2.saves.hasSeenFirstMenu = true;
+        YG2.SaveProgress();
+    }
+    
+    public bool HasSeenFirstMenu()
+    {
+        return YG2.saves.hasSeenFirstMenu;
+    }
+    
+    public void CompleteIntroDialogue()
+    {
+        YG2.saves.introDialogueCompleted = true;
+
+        YG2.SaveProgress();
     }
     
     public int AddScore(int scoreToAdd)
@@ -79,7 +103,7 @@ public class SaveGame : MonoBehaviour
             YG2.saves.coins
         );
         
-        //YG2.SaveProgress();
+        YG2.SaveProgress();
         return YG2.saves.coins;
     }
     
